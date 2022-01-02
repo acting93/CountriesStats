@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CountriesStats/static/css/main.5b69feb1.chunk.css",
+    "main.css": "/CountriesStats/static/css/main.c7b6afa8.chunk.css",
     "main.js": "/CountriesStats/static/js/main.63367069.chunk.js",
     "main.js.map": "/CountriesStats/static/js/main.63367069.chunk.js.map",
     "runtime-main.js": "/CountriesStats/static/js/runtime-main.47cd2238.js",
@@ -8,7 +8,7 @@
     "static/js/2.057848bb.chunk.js": "/CountriesStats/static/js/2.057848bb.chunk.js",
     "static/js/2.057848bb.chunk.js.map": "/CountriesStats/static/js/2.057848bb.chunk.js.map",
     "index.html": "/CountriesStats/index.html",
-    "static/css/main.5b69feb1.chunk.css.map": "/CountriesStats/static/css/main.5b69feb1.chunk.css.map",
+    "static/css/main.c7b6afa8.chunk.css.map": "/CountriesStats/static/css/main.c7b6afa8.chunk.css.map",
     "static/js/2.057848bb.chunk.js.LICENSE.txt": "/CountriesStats/static/js/2.057848bb.chunk.js.LICENSE.txt",
     "static/media/ad.svg": "/CountriesStats/static/media/ad.d770e199.svg",
     "static/media/al.svg": "/CountriesStats/static/media/al.68660ea6.svg",
@@ -47,7 +47,7 @@
   "entrypoints": [
     "static/js/runtime-main.47cd2238.js",
     "static/js/2.057848bb.chunk.js",
-    "static/css/main.5b69feb1.chunk.css",
+    "static/css/main.c7b6afa8.chunk.css",
     "static/js/main.63367069.chunk.js"
   ]
 }
