@@ -1,0 +1,10 @@
+@import '../Variables/Variables.scss';
+
+.wrapper{
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    @include paddingMargin(0 !important,0 !important);
+    display: flex;
+    flex-direction: column;
+} 

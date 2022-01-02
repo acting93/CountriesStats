@@ -1,0 +1,72 @@
+@mixin widthHeight($width,$height){
+    width:$width;
+    height:$height;
+}
+
+@mixin bgColor($bgColor){
+    background-color: $bgColor;
+}
+
+@mixin paddingMargin($padding,$margin){
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin displayFlex($display,$justify-content,$flex-direction){
+    display: $display;
+    justify-content: $justify-content;
+    flex-direction: $flex-direction;
+}
+@mixin military{
+    table{
+        position: relative;
+        top:50%;
+        transform: translateY(-50%);
+        @include widthHeight(100%,auto);
+        @include paddingMargin(10px,0);
+        color:rgb(216, 219, 0);
+        text-transform: uppercase;
+        @media(max-width:450px){
+            @include paddingMargin(0,0);  
+        }
+        tr{
+            @include displayFlex(flex,center,column);
+            @include paddingMargin(0,0);
+          td{
+             text-align: center;
+             @include widthHeight(100%,auto);
+             @include paddingMargin(10px,10px);
+             @media(max-width:768px){
+                @include paddingMargin(10px,5px);  
+             }
+                 &:first-child{
+                     color:rgb(209, 209, 209);
+                     font-size: 1.5rem;
+                     letter-spacing: 5px;
+                     @media(max-width:1100px){
+                        font-size: 1rem;  
+                     }
+                     @media(max-width:450px){
+                        font-size: 0.8rem;
+                        letter-spacing: 1px;  
+                     }
+                 }
+                 &:last-child{
+                     font-size: 1.3rem;
+                     @media(max-width:1100px){
+                        font-size: 0.9rem;  
+                     }
+                     @media(max-width:450px){
+                        font-size: 0.6rem;  
+                     }
+                 }
+           }
+       }
+    }
+}
+
+@mixin pVerticalCenter{
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+}

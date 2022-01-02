@@ -1,0 +1,9 @@
+@import '../Variables/Variables.scss';
+
+html body{
+    box-sizing: border-box;
+    @include paddingMargin(0 !important,0 !important);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: rgb(255, 255, 255);
+}

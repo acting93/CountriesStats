@@ -1,0 +1,30 @@
+@import '../Variables/Variables.scss';
+
+.navbar{
+    position: relative;
+    @include widthHeight(100%,auto);
+    @include paddingMargin(10px,0);
+    background:rgb(255, 255, 255);
+    .navbar-content{
+        position: relative;
+        @include widthHeight(100%,100%);
+        text-align: center;
+        @media(max-width:1000px) {
+            @include widthHeight(100%,100%); 
+        }
+        img{
+            width: 8rem;
+            @media(max-width:768px){
+                width: 5rem;
+            }
+        }
+        p{
+            margin-left: 50%;
+            transform: translate(-50%);
+            position: absolute;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color:silver;
+        }
+    }
+}
