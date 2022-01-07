@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/CountriesStats/static/css/main.0332031d.chunk.css",
-    "main.js": "/CountriesStats/static/js/main.ad9fef36.chunk.js",
-    "main.js.map": "/CountriesStats/static/js/main.ad9fef36.chunk.js.map",
+    "main.css": "/CountriesStats/static/css/main.50cf018f.chunk.css",
+    "main.js": "/CountriesStats/static/js/main.c0fa6955.chunk.js",
+    "main.js.map": "/CountriesStats/static/js/main.c0fa6955.chunk.js.map",
     "runtime-main.js": "/CountriesStats/static/js/runtime-main.47cd2238.js",
     "runtime-main.js.map": "/CountriesStats/static/js/runtime-main.47cd2238.js.map",
     "static/js/2.3b55a0d1.chunk.js": "/CountriesStats/static/js/2.3b55a0d1.chunk.js",
     "static/js/2.3b55a0d1.chunk.js.map": "/CountriesStats/static/js/2.3b55a0d1.chunk.js.map",
     "index.html": "/CountriesStats/index.html",
-    "static/css/main.0332031d.chunk.css.map": "/CountriesStats/static/css/main.0332031d.chunk.css.map",
+    "static/css/main.50cf018f.chunk.css.map": "/CountriesStats/static/css/main.50cf018f.chunk.css.map",
     "static/js/2.3b55a0d1.chunk.js.LICENSE.txt": "/CountriesStats/static/js/2.3b55a0d1.chunk.js.LICENSE.txt",
     "static/media/ad.svg": "/CountriesStats/static/media/ad.d770e199.svg",
     "static/media/al.svg": "/CountriesStats/static/media/al.68660ea6.svg",
@@ -47,7 +47,7 @@
   "entrypoints": [
     "static/js/runtime-main.47cd2238.js",
     "static/js/2.3b55a0d1.chunk.js",
-    "static/css/main.0332031d.chunk.css",
-    "static/js/main.ad9fef36.chunk.js"
+    "static/css/main.50cf018f.chunk.css",
+    "static/js/main.c0fa6955.chunk.js"
   ]
 }
