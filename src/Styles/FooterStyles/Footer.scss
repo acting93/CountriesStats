@@ -1,0 +1,8 @@
+@import '../Variables/Variables.scss';
+
+footer{
+    @include widthHeight(100%,auto);
+    background: aliceblue;
+    color:rgb(6, 134, 124);
+    text-align: center;
+}

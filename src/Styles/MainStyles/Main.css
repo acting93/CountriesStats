@@ -1,9 +1,11 @@
 main {
+  overflow-x: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.507))), url("../../Images/bg6.jpg") no-repeat center fixed;
   background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.507)), url("../../Images/bg6.jpg") no-repeat center fixed;
   background-size: cover;
   position: relative;
-  font-family: 'Oswald', sans-serif;
   padding: 0;
   margin: 0;
   display: -ms-grid;
@@ -18,7 +20,7 @@ main {
 main .map-content {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.774)), to(black)), url("../../Images/bg3.jpg");
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.774), black), url("../../Images/bg3.jpg");
-  padding: 10px;
+  padding: 10px 0px;
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -59,43 +61,62 @@ main .map-content {
   }
 }
 
+main .map-content .btn {
+  display: block;
+  padding: 20px;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0.747);
+  color: white;
+}
+
+main .map-content .btn:hover {
+  background: rgba(180, 180, 180, 0.466);
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
 main .map-content .map {
   text-align: center;
   position: relative;
   -ms-flex-preferred-size: 70%;
       flex-basis: 70%;
+  overflow: hidden;
 }
 
 main .map-content .map button {
   padding: 20px;
   margin: 0;
   border: none;
-  background: #063c6b;
+  background: rgba(0, 0, 0, 0.747);
   color: white;
+  z-index: 100;
 }
 
 main .map-content .map button:hover {
+  background: rgba(180, 180, 180, 0.466);
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
   cursor: pointer;
-  background: #1f1f52;
+}
+
+main .map-content .map #show-map {
+  position: absolute;
+  left: 0%;
 }
 
 main .map-content .map svg {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  max-width: 100% !important;
-  height: 750px !important;
-  width: 100%;
-  height: 100%;
-}
-
-main .map-content .map svg:hover {
-  -webkit-backdrop-filter: blur(300px);
-          backdrop-filter: blur(300px);
+  left: 0%;
+  max-width: 100%;
+  height: 800px;
+  z-index: 600;
 }
 
 @media (max-width: 992px) {
   main .map-content .map svg {
-    height: 400px !important;
+    height: 600px !important;
   }
 }
 
@@ -226,7 +247,7 @@ main .map-content .stats .stats-el:last-child table {
 
 main .map-content .stats .stats-el:last-child table td {
   color: white;
-  padding: 1.2rem;
+  padding: 1rem;
   margin: 10px auto;
   text-align: left;
 }
@@ -237,7 +258,7 @@ main .map-content .stats .stats-el:last-child table td:first-child {
 }
 
 main .map-content .stats .stats-el:last-child table td:last-child {
-  background: rgba(85, 85, 85, 0.356);
+  background: rgba(85, 85, 85, 0);
 }
 
 @media (max-width: 1300px) {
@@ -279,7 +300,7 @@ main .about-country {
   -ms-grid-row-span: 2;
   grid-row: 3/5;
   min-height: 500px !important;
-  padding: 0;
+  padding: 10px;
   margin: 30px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -291,6 +312,7 @@ main .about-country {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  background: rgba(0, 0, 0, 0.514);
 }
 
 @media (max-width: 1550px) {
@@ -347,7 +369,7 @@ main .about-country .country-element:first-child img {
 }
 
 main .about-country .country-element:last-child {
-  background: rgba(0, 0, 0, 0.767);
+  background: rgba(0, 0, 0, 0);
   width: 70%;
   height: 100%;
   -webkit-box-orient: vertical;
@@ -369,13 +391,14 @@ main .about-country .country-element:last-child .country-title {
   padding: 5px;
   margin: 0;
   text-align: center;
+  display: none;
 }
 
 main .about-country .country-element:last-child .country-title p {
   font-size: 2rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: #7df0ff;
+  color: white;
   letter-spacing: 2px;
 }
 
@@ -526,20 +549,18 @@ main .about-country .country-element:last-child .country-content .content-part s
 
 @media (max-width: 768px) {
   main .about-country .country-element:last-child .country-content .content-part span p {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 576px) {
   main .about-country .country-element:last-child .country-content .content-part span p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     height: auto;
   }
 }
 
 main .coronavirus {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -559,10 +580,12 @@ main .coronavirus {
           flex-direction: row;
   padding: 0;
   margin: 0;
-  background: url("../../Images/bg8.jpeg");
+  background: aliceblue;
   background-size: cover;
-  max-width: 100%;
-  height: 500px;
+  width: 100%;
+  height: 550px;
+  -webkit-box-shadow: 0 0 5px silver;
+          box-shadow: 0 0 5px silver;
 }
 
 @media (max-width: 992px) {
@@ -578,14 +601,7 @@ main .coronavirus {
         -ms-flex-direction: column;
             flex-direction: column;
     height: auto;
-    overflow: hidden;
   }
-}
-
-main .coronavirus .coronavirus-el {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 main .coronavirus .coronavirus-el:first-child {
@@ -597,7 +613,6 @@ main .coronavirus .coronavirus-el:first-child {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
-  background: rgba(2, 95, 87, 0.322);
 }
 
 @media (max-width: 992px) {
@@ -605,7 +620,6 @@ main .coronavirus .coronavirus-el:first-child {
     top: 0%;
     width: 100%;
     height: auto;
-    padding: 10px;
   }
 }
 
@@ -616,7 +630,7 @@ main .coronavirus .coronavirus-el:first-child p {
           transform: translateY(-50%);
   font-weight: 600;
   font-size: 1.6rem;
-  color: white;
+  color: #095246;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -646,12 +660,8 @@ main .coronavirus .coronavirus-el:first-child p {
 }
 
 main .coronavirus .coronavirus-el:first-child img {
-  top: 60%;
-  -webkit-transform: translateY(-60%);
-          transform: translateY(-60%);
-  margin-left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  top: 30%;
+  left: 50%;
   max-width: 10rem;
   height: auto;
 }
@@ -669,11 +679,21 @@ main .coronavirus .coronavirus-el:first-child img {
 }
 
 main .coronavirus .coronavirus-el:last-child {
-  width: 70%;
-  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 70%;
+  height: 100%;
+  padding: 10px;
+  margin: 0;
+  justify-content: center;
 }
 
 @media (max-width: 992px) {
@@ -683,12 +703,18 @@ main .coronavirus .coronavirus-el:last-child {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+  main .coronavirus .coronavirus-el:last-child {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
   main .coronavirus .coronavirus-el:last-child {
     -webkit-box-pack: left;
         -ms-flex-pack: left;
             justify-content: left;
-    overflow-x: scroll;
+    overflow-x: scroll !important;
     overflow-y: hidden;
     white-space: nowrap;
   }
@@ -700,83 +726,75 @@ main .coronavirus .coronavirus-el:last-child .covid {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 380px !important;
-  max-height: 400px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  height: 90%;
   padding: 0;
   margin: 5px;
-  border-radius: 5%;
-  background-size: cover;
 }
 
 @media (max-width: 992px) {
   main .coronavirus .coronavirus-el:last-child .covid {
-    width: 200px !important;
+    display: inline-block;
+    width: 300px !important;
+    height: 350px;
   }
-}
-
-main .coronavirus .coronavirus-el:last-child .covid i {
-  margin: 5px;
-  font-size: 3vw;
 }
 
 main .coronavirus .coronavirus-el:last-child .general, main .coronavirus .coronavirus-el:last-child .recovery, main .coronavirus .coronavirus-el:last-child .deaths {
   text-align: center;
-  background: rgba(0, 0, 0, 0.568);
+  -webkit-box-shadow: 0 0 5px silver;
+          box-shadow: 0 0 5px silver;
   background-position: left;
+  text-transform: uppercase;
+  background: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.521)), to(rgba(0, 0, 0, 0.486))), url("../../Images/bg2.jpg");
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 0.486)), url("../../Images/bg2.jpg");
+  background-size: cover;
 }
 
-main .coronavirus .coronavirus-el:last-child .general p:first-child, main .coronavirus .coronavirus-el:last-child .recovery p:first-child, main .coronavirus .coronavirus-el:last-child .deaths p:first-child {
-  margin-top: 10%;
-  font-size: 1.5rem;
-  font-weight: 400;
+main .coronavirus .coronavirus-el:last-child .general i, main .coronavirus .coronavirus-el:last-child .recovery i, main .coronavirus .coronavirus-el:last-child .deaths i {
   color: #eeeeee;
-  -webkit-box-shadow: 0 5px 0px #03265a;
-          box-shadow: 0 5px 0px #03265a;
-  padding: 5px;
+  font-size: 2.5rem;
+  position: relative;
+  top: 10%;
 }
 
-@media (max-width: 996px) {
-  main .coronavirus .coronavirus-el:last-child .general p:first-child, main .coronavirus .coronavirus-el:last-child .recovery p:first-child, main .coronavirus .coronavirus-el:last-child .deaths p:first-child {
-    font-size: 0.9rem;
-  }
+main .coronavirus .coronavirus-el:last-child .general p, main .coronavirus .coronavirus-el:last-child .recovery p, main .coronavirus .coronavirus-el:last-child .deaths p {
+  position: relative;
+  top: 20%;
 }
 
 main .coronavirus .coronavirus-el:last-child .general p:nth-child(2), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(2), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(2) {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 400;
-  color: #e0e0e0;
+  color: #f1f1f1;
 }
 
 @media (max-width: 996px) {
   main .coronavirus .coronavirus-el:last-child .general p:nth-child(2), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(2), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(2) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 450px) {
-  main .coronavirus .coronavirus-el:last-child .general p:nth-child(2), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(2), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(2) {
-    font-size: 0.7rem;
+main .coronavirus .coronavirus-el:last-child .general p:nth-child(3), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(3), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(3) {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #dddddd;
+}
+
+@media (max-width: 996px) {
+  main .coronavirus .coronavirus-el:last-child .general p:nth-child(3), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(3), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(3) {
+    font-size: 1rem;
   }
 }
 
 main .coronavirus .coronavirus-el:last-child .general p:last-child, main .coronavirus .coronavirus-el:last-child .recovery p:last-child, main .coronavirus .coronavirus-el:last-child .deaths p:last-child {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 400;
-  color: #e0e0e0;
+  color: white;
 }
 
 @media (max-width: 996px) {
   main .coronavirus .coronavirus-el:last-child .general p:last-child, main .coronavirus .coronavirus-el:last-child .recovery p:last-child, main .coronavirus .coronavirus-el:last-child .deaths p:last-child {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -787,13 +805,15 @@ main .coronavirus .coronavirus-el:last-child .recovery {
   background-position: center;
 }
 
-main .coronavirus .coronavirus-el:last-child .recovery p:first-child {
-  color: #01aa26;
-  -webkit-box-shadow: 0 5px 0px #035a03;
-          box-shadow: 0 5px 0px #035a03;
+main .coronavirus .coronavirus-el:last-child .recovery i {
+  color: #0098a3;
 }
 
 main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(2) {
+  color: #01aa26;
+}
+
+main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(3) {
   color: #2c2c2c;
 }
 
@@ -803,27 +823,29 @@ main .coronavirus .coronavirus-el:last-child .recovery p:last-child {
 
 main .coronavirus .coronavirus-el:last-child .deaths {
   text-align: center;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.589)), to(rgba(4, 204, 211, 0.911)));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.589), rgba(4, 204, 211, 0.911));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.849)), to(rgba(4, 204, 211, 0.911)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.849), rgba(4, 204, 211, 0.911));
 }
 
-main .coronavirus .coronavirus-el:last-child .deaths p:first-child {
-  color: #f1f1f1;
-  -webkit-box-shadow: 0 5px 0px #5a0303;
-          box-shadow: 0 5px 0px #5a0303;
+main .coronavirus .coronavirus-el:last-child .deaths i {
+  color: white;
 }
 
 main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(2) {
-  color: #2c2c2c;
+  color: #f1f1f1;
+}
+
+main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(3) {
+  color: #cccccc;
 }
 
 main .coronavirus .coronavirus-el:last-child .deaths p:last-child {
-  color: #252525;
+  color: white;
 }
 
 main .military {
-  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.226))), url("../../Images/bg5.jpg");
-  background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.226)), url("../../Images/bg5.jpg");
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0))), url("../../Images/bg5.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../../Images/bg5.jpg");
   background-position: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -861,7 +883,7 @@ main .military .military-title {
 
 main .military .military-title p {
   position: relative;
-  color: #c0bd00;
+  color: white;
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
@@ -877,7 +899,7 @@ main .military .military-title p {
 
 @media (max-width: 450px) {
   main .military .military-title p {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
@@ -924,35 +946,120 @@ main .military .military-content .military-el {
   background: rgba(0, 0, 0, 0.39);
 }
 
-main .military .military-content .military-el table {
+main .military .military-content .military-el:first-child table {
   padding: 0 !important;
   margin: 0 !important;
   width: 100%;
   height: auto;
 }
 
-main .military .military-content .military-el table tr {
+main .military .military-content .military-el:first-child table tr {
   width: 100%;
   height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 10%;
 }
 
-main .military .military-content .military-el table tr td {
+main .military .military-content .military-el:first-child table tr td {
   padding: 0 !important;
   margin: 15px 0 !important;
-  position: relative;
   width: 100%;
   height: auto;
-  font-size: 3rem;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
-  main .military .military-content .military-el table tr td {
-    font-size: 2rem;
+main .military .military-content .military-el:first-child table tr td:first-child {
+  font-size: 2rem;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  main .military .military-content .military-el:first-child table tr td:first-child {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 450px) {
-  main .military .military-content .military-el table tr td {
+main .military .military-content .military-el:first-child table tr td:nth-child(2) {
+  font-size: 2rem;
+  color: gold;
+}
+
+@media (max-width: 576px) {
+  main .military .military-content .military-el:first-child table tr td:nth-child(2) {
+    font-size: 1rem;
+  }
+}
+
+main .military .military-content .military-el:first-child table tr td:last-child {
+  font-size: 2rem;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  main .military .military-content .military-el:first-child table tr td:last-child {
+    font-size: 1rem;
+  }
+}
+
+main .military .military-content .military-el:last-child table {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+  height: auto;
+}
+
+main .military .military-content .military-el:last-child table tr {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 5%;
+}
+
+main .military .military-content .military-el:last-child table tr td {
+  padding: 0 !important;
+  margin: 5px 0 !important;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+main .military .military-content .military-el:last-child table tr td:nth-child(odd) {
+  font-size: 1.5rem;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  main .military .military-content .military-el:last-child table tr td:nth-child(odd) {
+    font-size: 1rem;
+  }
+}
+
+main .military .military-content .military-el:last-child table tr td:nth-child(even) {
+  font-size: 1.5rem;
+  color: gold;
+}
+
+@media (max-width: 576px) {
+  main .military .military-content .military-el:last-child table tr td:nth-child(even) {
     font-size: 1rem;
   }
 }
@@ -968,176 +1075,6 @@ main .military .military-content .military-el table tr td {
   main .military .military-content .military-el {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
-  }
-}
-
-main .military .military-content .military-el:first-child table {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  margin: 0;
-  color: #d8db00;
-  text-transform: uppercase;
-}
-
-@media (max-width: 450px) {
-  main .military .military-content .military-el:first-child table {
-    padding: 0;
-    margin: 0;
-  }
-}
-
-main .military .military-content .military-el:first-child table tr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 0;
-  margin: 0;
-}
-
-main .military .military-content .military-el:first-child table tr td {
-  text-align: center;
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  margin: 10px;
-}
-
-@media (max-width: 768px) {
-  main .military .military-content .military-el:first-child table tr td {
-    padding: 10px;
-    margin: 5px;
-  }
-}
-
-main .military .military-content .military-el:first-child table tr td:first-child {
-  color: #d1d1d1;
-  font-size: 1.5rem;
-  letter-spacing: 5px;
-}
-
-@media (max-width: 1100px) {
-  main .military .military-content .military-el:first-child table tr td:first-child {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 450px) {
-  main .military .military-content .military-el:first-child table tr td:first-child {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
-}
-
-main .military .military-content .military-el:first-child table tr td:last-child {
-  font-size: 1.3rem;
-}
-
-@media (max-width: 1100px) {
-  main .military .military-content .military-el:first-child table tr td:last-child {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 450px) {
-  main .military .military-content .military-el:first-child table tr td:last-child {
-    font-size: 0.6rem;
-  }
-}
-
-main .military .military-content .military-el:last-child table {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  margin: 0;
-  color: #d8db00;
-  text-transform: uppercase;
-}
-
-@media (max-width: 450px) {
-  main .military .military-content .military-el:last-child table {
-    padding: 0;
-    margin: 0;
-  }
-}
-
-main .military .military-content .military-el:last-child table tr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 0;
-  margin: 0;
-}
-
-main .military .military-content .military-el:last-child table tr td {
-  text-align: center;
-  width: 100%;
-  height: auto;
-  padding: 10px;
-  margin: 10px;
-}
-
-@media (max-width: 768px) {
-  main .military .military-content .military-el:last-child table tr td {
-    padding: 10px;
-    margin: 5px;
-  }
-}
-
-main .military .military-content .military-el:last-child table tr td:first-child {
-  color: #d1d1d1;
-  font-size: 1.5rem;
-  letter-spacing: 5px;
-}
-
-@media (max-width: 1100px) {
-  main .military .military-content .military-el:last-child table tr td:first-child {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 450px) {
-  main .military .military-content .military-el:last-child table tr td:first-child {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
-}
-
-main .military .military-content .military-el:last-child table tr td:last-child {
-  font-size: 1.3rem;
-}
-
-@media (max-width: 1100px) {
-  main .military .military-content .military-el:last-child table tr td:last-child {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 450px) {
-  main .military .military-content .military-el:last-child table tr td:last-child {
-    font-size: 0.6rem;
   }
 }
 
@@ -1159,7 +1096,6 @@ main .gold-reserves {
 main .gold-reserves .gold-title {
   width: 100%;
   height: 100px;
-  background: rgba(0, 0, 0, 0.904);
 }
 
 main .gold-reserves .gold-title p {

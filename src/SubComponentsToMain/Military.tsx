@@ -31,11 +31,11 @@ const Military:React.FC =()=>{
 
     const getMilitaryInfo =async(countryCode:string)=>{
         
-        const expenditureGdpApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPND.GD.ZS?format=json`; //A percentage of expenditure military % of GDP 
-        const militaryExpenditureApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPND.CD?format=json`; // A military expenditure per country
-        const militaryPersonnelApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.TOTL.P1?format=json`; // A military personnel per country
-        const armyExportApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPRT.KD?format=json`; // Army export equipement USD
-        const armyImportApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.MPRT.KD?format=json`; // Army import equipement USD
+        const expenditureGdpApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPND.GD.ZS?format=json`; //A percentage of expenditure military % of GDP 
+        const militaryExpenditureApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPND.CD?format=json`; // A military expenditure per country
+        const militaryPersonnelApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.TOTL.P1?format=json`; // A military personnel per country
+        const armyExportApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPRT.KD?format=json`; // Army export equipement USD
+        const armyImportApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.MPRT.KD?format=json`; // Army import equipement USD
 
         const getExpenditureGdp = axios(expenditureGdpApi);
         const getMilitaryExpenditure = axios(militaryExpenditureApi);
@@ -102,12 +102,8 @@ const Military:React.FC =()=>{
                             <tr>
                                 <td>Active personnel <br/>  2018</td>
                                 <td>{militaryStats.militaryPersonnel}</td>
-                            </tr>
-                            <tr>
                                 <td>Arms Export - {militaryStats.armsExportYear}</td>
                                 <td>{militaryStats.armsExport}</td>
-                            </tr>
-                            <tr>
                                 <td>Arms Import - {militaryStats.armsImportYear}</td>
                                 <td>{militaryStats.armsImport}</td>
                             </tr>

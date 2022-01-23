@@ -12,6 +12,7 @@ interface CountryName {
     capital: string,
     currency:string,
     language:string
+    area:string,
 };
 
 interface Emblems {
@@ -22,7 +23,6 @@ interface Emblems {
 interface Worldbank {
     population:string,
     populationSqKm:string
-    area:string,
     forestArea:string
     gdp:string,
     gdpPPC:string
@@ -46,13 +46,13 @@ const InfoContry:React.FC =()=>{
         name: '',
         capital:'',
         currency:'',
-        language:''
+        language:'',
+        area:''
     });
 
     const [worldBankInfo,setWorldBankInfo] = useState<Worldbank>({
         population:'',
         populationSqKm:'',
-        area:'',
         forestArea:'',
         gdp:'',
         gdpPPC:''
@@ -71,13 +71,14 @@ const InfoContry:React.FC =()=>{
 
                 const countryArray = response.data[0]; // iteration of array and object 
                 const getCurrency = Object.entries<ObjectConstructor>(countryArray.currencies); // iteration with using object 
-                const getLanguage = Object.values<ObjectConstructor>(countryArray.languages); // iteration with using object 
+                const getLanguage = Object.values<ObjectConstructor>(countryArray.languages); // iteration with using object
 
                 setCountry({
                     name: countryArray.name.common,
                     capital:countryArray.capital[0].toUpperCase(),
                     currency: getCurrency[0][1].name.toString(),
-                    language:getLanguage.toString()
+                    language:getLanguage.toString(),
+                    area:new Intl.NumberFormat('pl-PL').format(countryArray.area)
                 });
 
                 setEmblems({
@@ -106,22 +107,22 @@ const getRestInformation =async(countryCode:string)=>{
 
     //World Bank
 
-    const populationApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/SP.POP.TOTL?format=json`;
-    const areaApi  = `http://api.worldbank.org/v2/country/${countryCode}/indicator/AG.SRF.TOTL.K2?format=json`;
-    const GDPApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.MKTP.CD?format=json`;
-    const GDPperCapitaApi  = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.PCAP.CD?format=json`;
-    const Co2EmissionApi  = `http://api.worldbank.org/v2/country/${countryCode}/indicator/EN.ATM.CO2E.PC?format=json`; /// -  send result to global state
-    const gniPerCapitaApi  = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GNP.PCAP.CD?format=json`; /// -  send result to global state
-    const populationSqKm = `http://api.worldbank.org/v2/country/${countryCode}/indicator/EN.POP.DNST?format=json`;
-    const gniApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GNP.ATLS.CD?format=json`; /// -  send result to global state 2020
-    const forestAreaApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/AG.LND.FRST.K2?format=json`;
-    const gdpGrowthApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.MKTP.KD.ZG?format=json`; /// -  send result to global state 2020 annual %
-    const inflationApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.DEFL.KD.ZG?format=json`; /// -  send result to global state 2020 gdp deflator annual %
-    const exportApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NE.EXP.GNFS.ZS?format=json`; /// -  send result to global state 2020 export goods and service (% of GDP)
-    const importApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NE.IMP.GNFS.ZS?format=json`; /// -  send result to global state 2020 import goods and service (% of GDP)
-    const industryApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/NV.IND.TOTL.ZS?format=json`; /// -  send result to global state 2020 Industry (including construction), value added (% of GDP)
-    const militaryExpenditureApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPND.GD.ZS?format=json`; /// -  send result to global state 2020 Military expenditure (% of GDP) - Poland
-    const merchandiseTradeApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/TG.VAL.TOTL.GD.ZS?format=json`; /// -  send result to global state 2020 merchandise trade (% of GDP)
+    const populationApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/SP.POP.TOTL?format=json`;
+    const areaApi  = `https://api.worldbank.org/v2/country/${countryCode}/indicator/AG.SRF.TOTL.K2?format=json`;
+    const GDPApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.MKTP.CD?format=json`;
+    const GDPperCapitaApi  = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.PCAP.CD?format=json`;
+    const Co2EmissionApi  = `https://api.worldbank.org/v2/country/${countryCode}/indicator/EN.ATM.CO2E.PC?format=json`; /// -  send result to global state
+    const gniPerCapitaApi  = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GNP.PCAP.CD?format=json`; /// -  send result to global state
+    const populationSqKm = `https://api.worldbank.org/v2/country/${countryCode}/indicator/EN.POP.DNST?format=json`;
+    const gniApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GNP.ATLS.CD?format=json`; /// -  send result to global state 2020
+    const forestAreaApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/AG.LND.FRST.K2?format=json`;
+    const gdpGrowthApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.MKTP.KD.ZG?format=json`; /// -  send result to global state 2020 annual %
+    const inflationApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.DEFL.KD.ZG?format=json`; /// -  send result to global state 2020 gdp deflator annual %
+    const exportApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NE.EXP.GNFS.ZS?format=json`; /// -  send result to global state 2020 export goods and service (% of GDP)
+    const importApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NE.IMP.GNFS.ZS?format=json`; /// -  send result to global state 2020 import goods and service (% of GDP)
+    const industryApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/NV.IND.TOTL.ZS?format=json`; /// -  send result to global state 2020 Industry (including construction), value added (% of GDP)
+    const militaryExpenditureApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/MS.MIL.XPND.GD.ZS?format=json`; /// -  send result to global state 2020 Military expenditure (% of GDP) - Poland
+    const merchandiseTradeApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/TG.VAL.TOTL.GD.ZS?format=json`; /// -  send result to global state 2020 merchandise trade (% of GDP)
 
     const getPopulation = axios.get(populationApi);    
     const getArea = axios.get(areaApi);
@@ -147,7 +148,6 @@ const getRestInformation =async(countryCode:string)=>{
         axios.spread((...allData)=>{
 
             const population = new Intl.NumberFormat('pl-PL').format(allData[0].data[1][0].value); 
-            const area = new Intl.NumberFormat('pl-PL').format(allData[1].data[1][3].value);
             const gdp = new Intl.NumberFormat('pl-PL').format((allData[2].data[1][0].value).toFixed(0));
             const gdpPerCapita = new Intl.NumberFormat('pl-Pl').format((allData[3].data[1][0].value).toFixed(0));
             const co2Emission = allData[4].data[1][2].value.toFixed(2);
@@ -166,7 +166,6 @@ const getRestInformation =async(countryCode:string)=>{
             setWorldBankInfo({
                population:population,
                populationSqKm:populationSqKm,
-               area:area,
                forestArea:forestArea,
                gdp:gdp,
                gdpPPC:gdpPerCapita
@@ -223,7 +222,7 @@ useEffect(()=>{
                             />
                             <WorldBankInfo 
                                 population ={worldBankInfo.population}
-                                area = {worldBankInfo.area} 
+                                area = {country.area} 
                                 gdp = {worldBankInfo.gdp}
                                 gdpPPC = {worldBankInfo.gdpPPC}
                                 populationSqKm = {worldBankInfo.populationSqKm}

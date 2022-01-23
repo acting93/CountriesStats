@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Footer from '../DOMComponents/Footer';
 import Header from '../DOMComponents/Header';
 import Main from '../DOMComponents/Main';
 import '../Styles/WrapperStyles/Wrapper.css';
@@ -13,6 +14,7 @@ const MainComponent:React.FC =()=> {
             <div className='wrapper'>
                 <Header />
                 <Main />
+                <Footer />
             </div>
         </>
     )

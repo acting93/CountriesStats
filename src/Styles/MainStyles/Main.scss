@@ -1,10 +1,11 @@
 @import '../Variables/Variables.scss';
 
 main{
+   overflow-x: hidden;
+   box-sizing: border-box;
    background:linear-gradient(to bottom,black,rgba(0, 0, 0, 0.507)), url('../../Images/bg6.jpg') no-repeat center fixed;
    background-size: cover;
    position: relative;
-   font-family: 'Oswald', sans-serif;
    @include paddingMargin(0,0);
    display: grid;
    grid-template-columns: repeat(1,1fr);
@@ -19,7 +20,7 @@ main{
    /////
    .map-content{
         background: linear-gradient(to bottom,rgba(0, 0, 0, 0.774),rgb(0, 0, 0)),url('../../Images/bg3.jpg');
-        @include paddingMargin(10px,0);
+        @include paddingMargin(10px 0px,0);
         @include displayFlex(flex,center,row);
         grid-row: 1/3;
         grid-area: mapContent;
@@ -29,29 +30,48 @@ main{
             @include displayFlex(flex,center,column);
             align-items:stretch;
         }
+        .btn{
+            display: block;
+            @include paddingMargin(20px, 0);
+            border:none;
+            outline: none;
+            background: rgba(0, 0, 0, 0.747);
+            color:white;
+            &:hover{
+                background: rgba(180, 180, 180, 0.466);
+                transition: 0.1s;
+                cursor: pointer;
+            }
+        }
         .map{
             text-align: center;
             position: relative;
             flex-basis: 70%;
+            overflow:hidden;
             button{
                 @include paddingMargin(20px,0);
                 border: none;
-                background: rgb(6, 60, 107);
+                background: rgba(0, 0, 0, 0.747);
                 color:white;
+                z-index: 100;
                 &:hover{
+                    background: rgba(180, 180, 180, 0.466);
+                    transition: 0.1s;
                     cursor: pointer;
-                    background: rgb(31, 31, 82);
                 }
             }
+            #show-map{
+                position: absolute;
+                left:0%;
+
+            }
             svg{
-                transform: scale(1);
-                max-width: 100% !important;
-                height: 750px !important;
-                &:hover{
-                    backdrop-filter: blur(300px);
-                }
+                left:0%;
+                max-width: 100%;
+                height: 800px;
+                z-index: 600;
                 @media(max-width:992px){
-                    height: 400px !important;
+                    height: 600px !important;
                 }
                 .path:hover{
                     fill: aliceblue;
@@ -62,7 +82,6 @@ main{
                     stroke:rgb(3, 102, 194);
                     stroke-width: 0.1px;
                 }
-                @include widthHeight(100%,100%);
                 a:hover{
                     fill: rgb(1, 22, 68);
                     cursor: pointer;
@@ -134,14 +153,14 @@ main{
                         @include widthHeight(100%,auto);
                         td{
                             color:rgb(255, 255, 255);
-                            @include paddingMargin(1.2rem,10px auto);
+                            @include paddingMargin(1rem,10px auto);
                             text-align: left;
                             &:first-child{
                                 text-align: right;
                                 background: rgba(0, 0, 0, 0.329);
                             }
                             &:last-child{
-                                background: rgba(85, 85, 85, 0.356);
+                                background: rgba(85, 85, 85, 0);
                             }
                             @media(max-width:1300px){
                                 font-size: 0.8rem;
@@ -169,8 +188,9 @@ main{
        grid-area: aboutCountry;
        grid-row: 3/5;
        min-height: 500px !important;
-       @include paddingMargin(0,30px auto);
+       @include paddingMargin(10px,30px auto);
        @include displayFlex(flex,left,row);
+       background: rgba(0, 0, 0, 0.514);
        @media(max-width:1550px){
          flex-direction: column;
          width: 100%; 
@@ -204,7 +224,7 @@ main{
                 } 
             }
             &:last-child{
-                background: rgba(0, 0, 0, 0.767);
+                background: rgba(0, 0, 0, 0);
                 @include widthHeight(70%,100%);
                 flex-direction: column;
                 @media (max-width:1550px){
@@ -214,11 +234,12 @@ main{
                     @include widthHeight(auto,auto);
                     @include paddingMargin(5px,0);
                     text-align: center;
+                    display: none;
                     p{
                         font-size: 2rem;
                         font-weight: 500;
                         text-transform: uppercase;
-                        color:rgb(125, 240, 255);
+                        color:rgb(255, 255, 255);
                         letter-spacing: 2px;
                         @media (max-width:1550px){
                             text-align: center;
@@ -300,10 +321,10 @@ main{
                                 position: relative;
                                 margin-left: 10px;
                                 @media (max-width:768px){
-                                    font-size: 0.7rem;
+                                    font-size: 0.9rem;
                                 }
                                 @media(max-width:576px){
-                                    font-size: 0.6rem;
+                                    font-size: 0.8rem;
                                     height: auto;  
                                 }
                             }
@@ -314,32 +335,28 @@ main{
        }
    }
    .coronavirus{
-       box-sizing: border-box;
        grid-area: coronavirus;
        grid-row: 5/7;
        @include displayFlex(flex,center,row);
        @include paddingMargin(0,0);
-       background: url('../../Images/bg8.jpeg');
+       background: aliceblue;
        background-size: cover;
-       max-width: 100%;
-       height: 500px;
+       width: 100%;
+       height: 550px;
+       box-shadow: 0 0 5px silver;
        @media(max-width:992px){
             @include displayFlex(flex,center,column);
             height: auto;
-            overflow:hidden;
        }
        .coronavirus-el{
-            display: flex;
             &:first-child{
                 @include widthHeight(30%,100%);
                 position: relative;
                 flex-direction: column;
                 text-align: center;
-                background: rgba(2, 95, 87, 0.322);
                 @media(max-width:992px){
                     top:0%;
                     @include widthHeight(100%,auto);
-                    padding: 10px;
                 }
                 p{
                     position: relative;
@@ -347,7 +364,7 @@ main{
                     transform: translateY(-50%);
                     font-weight: 600;
                     font-size: 1.6rem;
-                    color:rgb(255, 255, 255);
+                    color:rgb(9, 82, 70);
                     text-transform: uppercase;
                     letter-spacing: 2px;
                     @media(max-width:1100px){
@@ -364,10 +381,8 @@ main{
                     }
                 }
                 img{
-                    top:60%;
-                    transform: translateY(-60%);
-                    margin-left: 50%;
-                    transform: translateX(-50%);
+                    top:30%;
+                    left: 50%;
                     max-width:10rem;
                     height: auto;
                     @media(max-width:768px){
@@ -379,14 +394,19 @@ main{
                 }
             }
             &:last-child{
+                @include displayFlex(flex,center,row);
                 @include widthHeight(70%,100%);
+                @include paddingMargin(10px,0);
                 justify-content: center;
                 @media(max-width:992px){
                     @include widthHeight(100%,auto);
                 }
-                @media(max-width:576px){
+                @media(max-width:768px){
+                    display: block;
+                }
+                @media(max-width:768px){
                     justify-content: left;
-                    overflow-x:scroll;
+                    overflow-x:scroll !important;
                     overflow-y:hidden;
                     white-space: nowrap;
                 }
@@ -395,52 +415,52 @@ main{
                     top: 50%;
                     transform: translateY(-50%);
                     width: 380px !important;
-                    max-height: 400px;
-                    @include displayFlex(flex,center,column);
+                    height: 90%;
                     @include paddingMargin(0,5px);
-                    border-radius: 5%;
-                    background-size: cover;
                     @media(max-width:992px){
-                      width: 200px !important;
-                    }
-                    i{
-                        margin: 5px;
-                        font-size: 3vw;
-                    }
+                        display: inline-block;
+                        width: 300px !important;
+                        height: 350px;
+                     }
                 }
                 .general{
                     text-align: center;
-                    background: rgba(0, 0, 0, 0.568);
+                    box-shadow: 0 0 5px silver;
                     background-position: left;
+                    text-transform: uppercase;
+                    background: linear-gradient(to left, rgba(0, 0, 0, 0.521),rgba(0, 0, 0, 0.486)),url('../../Images/bg2.jpg');
+                    background-size: cover;
+                    i{
+                        color:rgb(238, 238, 238);
+                        font-size: 2.5rem;
+                        position: relative;
+                        top:10%;
+                    }
                     p{
-                        &:first-child{
-                            margin-top: 10%;
+                        position: relative;
+                        top:20%;
+                        &:nth-child(2){
                             font-size: 1.5rem;
                             font-weight: 400;
-                            color:rgb(238, 238, 238);
-                            box-shadow: 0 5px 0px rgb(3, 38, 90);
-                            padding: 5px;
+                            color:rgb(241, 241, 241);
                             @media(max-width:996px){
-                                font-size: 0.9rem; 
+                                font-size: 1rem; 
                             }
                         }
-                        &:nth-child(2){
-                            font-size: 1rem;
-                            font-weight: 400;
-                            color:rgb(224, 224, 224);
+                        &:nth-child(3){
+                            font-size: 1.2rem;
+                            font-weight: 500;
+                            color:rgb(221, 221, 221);
                             @media(max-width:996px){
-                                font-size: 0.9rem; 
-                            }
-                            @media(max-width:450px){
-                                font-size: 0.7rem; 
+                                font-size: 1rem; 
                             }
                         }
                         &:last-child{
-                            font-size: 2rem;
+                            font-size: 2.5rem;
                             font-weight: 400;
-                            color:rgb(224, 224, 224);
+                            color:rgb(255, 255, 255);
                             @media(max-width:996px){
-                                font-size: 0.9rem; 
+                                font-size: 1.5rem; 
                             }
                         }
                     }
@@ -451,12 +471,14 @@ main{
                     @extend .general;
                     background:linear-gradient(to bottom, rgba(255, 255, 255, 0.589), rgba(4, 204, 211, 0.555)), url('../../Images/covid.jpg');
                     background-position: center;
+                    i{
+                        color:rgb(0, 152, 163);
+                    }
                     p{
-                        &:first-child{
-                            color:rgb(1, 170, 38);
-                            box-shadow: 0 5px 0px rgb(3, 90, 3);
-                        }
                         &:nth-child(2){
+                            color:rgb(1, 170, 38);
+                        }
+                        &:nth-child(3){
                             color:rgb(44, 44, 44);
                         }
                         &:last-child{
@@ -468,17 +490,19 @@ main{
                 .deaths{
                     text-align: center;
                     @extend .general;
-                    background:linear-gradient(to bottom, rgba(255, 255, 255, 0.589), rgba(4, 204, 211, 0.911));
+                    background:linear-gradient(to bottom, rgba(0, 0, 0, 0.849), rgba(4, 204, 211, 0.911));
+                    i{
+                        color:rgb(255, 255, 255);
+                    }
                     p{
-                        &:first-child{
-                            color:rgb(241, 241, 241);
-                            box-shadow: 0 5px 0px rgb(90, 3, 3);
-                        }
                         &:nth-child(2){
-                            color:rgb(44, 44, 44);
+                            color:rgb(241, 241, 241);
+                        }
+                        &:nth-child(3){
+                            color:rgb(204, 204, 204);
                         }
                         &:last-child{
-                            color:rgb(37, 37, 37);
+                            color:rgb(255, 255, 255);
                         }
                     }
                     
@@ -488,7 +512,7 @@ main{
        }
    }
    .military{
-        background:linear-gradient(to bottom, rgb(0, 0, 0),rgba(0, 0, 0, 0.226)),url('../../Images/bg5.jpg');
+        background:linear-gradient(to bottom, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),url('../../Images/bg5.jpg');
         background-position: center;
         @include displayFlex(flex,center,column);
         @include paddingMargin(10px,0);
@@ -503,7 +527,7 @@ main{
             @include widthHeight(100%,auto);
             p{
                 position: relative;
-                color: rgb(192, 189, 0);
+                color: rgb(255, 255, 255);
                 font-weight: 400;
                 text-align: center;
                 text-transform: uppercase;
@@ -513,7 +537,7 @@ main{
                     font-size: 1.5rem;
                 }
                 @media(max-width:450px){
-                    font-size: 0.8rem;
+                    font-size: 1rem;
                 }
             }
         }
@@ -531,36 +555,82 @@ main{
             .military-el{
                 flex-basis:40%;
                 background: rgba(0, 0, 0, 0.39);
-                table{
-                    @include paddingMargin(0 !important,0!important);
-                    @include widthHeight(100%,auto);
-                    tr{
+                &:first-child{
+                    table{
+                        @include paddingMargin(0 !important,0!important);
                         @include widthHeight(100%,auto);
-                        td{
-                            @include paddingMargin(0 !important,15px 0 !important);
-                            position: relative;
+                        tr{
                             @include widthHeight(100%,auto);
-                            font-size: 3rem;
-                            @media(max-width:768px){
-                                font-size: 2rem; 
-                            }
-                            @media(max-width:450px){
-                                font-size: 1rem; 
+                            @include displayFlex(flex,center,column); 
+                            margin-top:10%;
+                            td{
+                                @include paddingMargin(0 !important,15px 0 !important);
+                                @include widthHeight(100%,auto);
+                                text-align: center;
+                                &:first-child{
+                                    font-size: 2rem;
+                                    color: rgb(255, 255, 255);
+                                    @media(max-width:576px){
+                                        font-size: 1rem;
+                                    }
+                                }
+                                &:nth-child(2){
+                                    font-size: 2rem;
+                                    color: gold;
+                                    @media(max-width:576px){
+                                        font-size: 1rem;
+                                    }
+                                }
+                                &:last-child{
+                                    font-size: 2rem;
+                                    color: rgb(255, 255, 255);
+                                    @media(max-width:576px){
+                                        font-size: 1rem;
+                                    }
+                                }
+                               
                             }
                         }
                     }
                 }
+                &:last-child{
+                    table{
+                        @include paddingMargin(0 !important,0!important);
+                        @include widthHeight(100%,auto);
+                        tr{
+                            @include widthHeight(100%,auto);
+                            @include displayFlex(flex,center,column); 
+                            margin-top:5%;
+                            td{
+                                @include paddingMargin(0 !important,5px 0 !important);
+                                @include widthHeight(100%,auto);
+                                text-align: center;
+                                font-size: 2rem;
+                                &:nth-child(odd){
+                                    font-size: 1.5rem;
+                                    color: rgb(255, 255, 255);
+                                    @media(max-width:576px){
+                                        font-size: 1rem;
+                                    }
+                                }
+                                &:nth-child(even){
+                                    font-size: 1.5rem;
+                                    color: gold;
+                                    @media(max-width:576px){
+                                        font-size: 1rem;
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+                
                 @media(max-width:1400px){
                     flex-basis:50%; 
                 }
                 @media(max-width:768px){
                     flex-basis:100%; 
-                }
-                &:first-child{
-                    @include military
-                }
-                &:last-child{
-                    @include military;
                 }
             }
         }
@@ -575,7 +645,6 @@ main{
        background-size:cover;
        .gold-title{
            @include widthHeight(100%,100px);
-           background: rgba(0, 0, 0, 0.904);
             p{
                 position: relative;
                 top:50%;

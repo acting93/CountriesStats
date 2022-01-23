@@ -19,7 +19,7 @@ type StateTypes = {
 
 
 const mainState:StateTypes = {
-    countryCode: 'ru',
+    countryCode: 'pl',
     flag:'',
     countryName:'',
     co2:'',

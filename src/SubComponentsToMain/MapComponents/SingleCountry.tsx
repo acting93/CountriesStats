@@ -68,7 +68,7 @@ const SingleCountry:React.FC =()=>{
     return(
         <>
             <div className='map-country map'>
-            <button onClick={showEurope} id='back-map'>Show Europe</button>
+                <button onClick={showEurope} id='show-map'>Show Europe</button>
                 <SVGSingleCountry
                     attr={svgAttr}
                     path={pathElements}

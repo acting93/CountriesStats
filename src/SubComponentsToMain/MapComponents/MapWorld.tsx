@@ -1,33 +1,255 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState} from "react";
 import { useDispatch } from "react-redux";
 import { GET_CODE_COUNTRY_TYPE, SHOW_COUNTRY_MAP } from "../../Redux/actionTypes";
 
 const MapWorld:React.FC =()=> {
 
 	const dispatch = useDispatch();
+	const mapRef = useRef<any>();
+	const mapDivRef = useRef<any>();
+	const [scale,setScale] = useState({
+		scalePos:1,
+		basicWidth:0,
+		basicHeight:0
+	});
+	const [coordinates,setCoordinates] = useState({
+		move:false,
+		xCLient:0,
+		yCLient:0,
+	});
 
-	//a function that gets country code and send to state 
 
+
+//a function that gets country code and send to state 
 	const getCountryCode =(countryCode:string)=>{
 
-		dispatch<SHOW_COUNTRY_MAP>(({
-			type:'SHOW_COUNTRY_MAP',
-			showCountry:false
-		}));
+			dispatch<SHOW_COUNTRY_MAP>(({
+				type:'SHOW_COUNTRY_MAP',
+				showCountry:false
+			}));
+	
+			dispatch<GET_CODE_COUNTRY_TYPE>({
+				type:'GET_CODE_COUNTRY',
+				codeCountry:countryCode
+			});
+	};
 
-		dispatch<GET_CODE_COUNTRY_TYPE>({
-			type:'GET_CODE_COUNTRY',
-			codeCountry:countryCode
+//add scale
+	const getCloser =():void=>{
+
+		setScale({
+			...scale,
+			scalePos:scale.scalePos + 0.5,
 		});
 	};
 
+//substract scale
+	const getOut =()=>{
+
+		setScale({
+			...scale,
+			scalePos:scale.scalePos - 0.5,
+		});
+	};
+
+//mouse on map, mosuedown,coordinates mouse on map + new style
+	const startMoveMap =(e:any)=>{
+
+		const getBody = document.querySelector('body') as HTMLBodyElement;
+		getBody.style.overflowY = 'hidden';
+
+		const newCoordinatesWidth = (parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) - scale.basicWidth) /2;
+		const newCoordinatesHeight = (parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) - scale.basicHeight) /2;
+			
+		if(scale.scalePos === 1){
+			setCoordinates({
+				...coordinates,
+				move:true,
+				xCLient:e.clientX - parseInt(mapRef.current.getBoundingClientRect().x.toFixed(0)),
+				yCLient:e.clientY - parseInt(mapRef.current.getBoundingClientRect().y.toFixed(0)),
+			});
+		}
+		else if(scale.scalePos > 1){
+			setCoordinates({
+				...coordinates,
+				move:true,
+				xCLient:e.clientX - parseInt(mapRef.current.getBoundingClientRect().x.toFixed(0)) - newCoordinatesWidth,
+				yCLient:e.clientY -  parseInt(mapRef.current.getBoundingClientRect().y.toFixed(0)) - newCoordinatesHeight,
+			});
+		};
+	};
+
+	
+//touch on map, touchdown,coordinates touch on map + new style
+	const startTouchMap =(e:any)=>{
+
+		const getBody = document.querySelector('body') as HTMLBodyElement;
+		getBody.style.overflowY = 'hidden';
+
+		const getButton = document.querySelectorAll('.btn') as NodeListOf<HTMLButtonElement>;
+		getButton.forEach(button => button.style.opacity = '1');
+
+		const newCoordinatesWidth = (parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) - scale.basicWidth) /2;
+		const newCoordinatesHeight = (parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) - scale.basicHeight) /2;
+
+		if(scale.scalePos <= 1){
+			setCoordinates({
+				...coordinates,
+				move:true,
+				xCLient:e.touches[0].clientX - parseInt(mapRef.current.getBoundingClientRect().x.toFixed(0)),
+				yCLient:e.touches[0].clientY - parseInt(mapRef.current.getBoundingClientRect().y.toFixed(0)),
+			});
+		}
+		else if(scale.scalePos > 1){
+			setCoordinates({
+				...coordinates,
+				move:true,
+				xCLient:e.touches[0].clientX - parseInt(mapRef.current.getBoundingClientRect().x.toFixed(0)) - newCoordinatesWidth,
+				yCLient:e.touches[0].clientY - parseInt(mapRef.current.getBoundingClientRect().y.toFixed(0)) - newCoordinatesHeight
+			});
+		}
+	};
+
+//cursor out of map, mouse/ touch up
+	const stopMoveMap =()=>{
+		
+		setCoordinates({
+			...coordinates,
+			move:false,
+		});
+
+		const getBody = document.querySelector('body') as HTMLBodyElement;
+		getBody.style.overflow = 'auto';
+
+		const getButton = document.querySelectorAll('.btn') as NodeListOf<HTMLButtonElement>;
+		getButton.forEach(button => button.style.opacity = '1');
+		
+		const getSingleCountry = document.querySelectorAll('.st0') as NodeListOf<SVGPathElement>;
+		getSingleCountry.forEach(element => element.style.pointerEvents = 'visible');
+
+	};
+	
+//get coordinates mouse cursor and move map
+	const dragMap =(e:any)=>{
+
+			const eClientX = e.clientX;
+			const eClientY = e.clientY;
+			const rectLeft = parseInt(mapDivRef.current.getBoundingClientRect().x.toFixed(0)); /// const value
+			const rectTop = parseInt(mapDivRef.current.getBoundingClientRect().y.toFixed(0));
+
+			mapRef.current.style.left  = (eClientX - coordinates.xCLient) - (rectLeft) + "px";
+			mapRef.current.style.top = (eClientY - coordinates.yCLient) - (rectTop) + "px";
+			//mapRef.current.style.transition = "0.09s";
+			
+			const getButton = document.querySelectorAll('.btn') as NodeListOf<HTMLButtonElement>;
+			getButton.forEach(button => button.style.opacity = '0.1');
+
+			const getSingleCountry = document.querySelectorAll('.st0') as NodeListOf<SVGPathElement>;
+			getSingleCountry.forEach(element => element.style.pointerEvents = 'none');
+
+	};
+	
+//get coordinates touch and move map
+	const dragMapMobile =(e:any)=>{
+
+			const eClientX = e.touches[0].clientX;
+			const eClientY = e.touches[0].clientY;
+			const rectLeft = parseInt(mapDivRef.current.getBoundingClientRect().x.toFixed(0)); /// const value
+			const rectTop = parseInt(mapDivRef.current.getBoundingClientRect().y.toFixed(0));
+
+			mapRef.current.style.left  = (eClientX - coordinates.xCLient) - (rectLeft) + "px";
+			mapRef.current.style.top = (eClientY - coordinates.yCLient) - (rectTop) + "px";
+
+			const getButton = document.querySelectorAll('.btn') as NodeListOf<HTMLButtonElement>;
+			getButton.forEach(button => button.style.opacity = '0.1');
+
+	};
+
+//during resize add scale of svg map
+
+	const setScaleAutomatic =(screenWidth:number)=>{
+
+		//const screenWidth = window.innerWidth;
+
+		if(screenWidth > 1600){
+			setScale({
+				...scale,
+				scalePos:1,
+				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)),
+				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0))
+			});
+		}else if(screenWidth > 1300 && screenWidth < 1600){
+			setScale({
+				...scale,
+				scalePos:1.5,
+				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
+				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
+			});
+		}else if(screenWidth > 992 && screenWidth < 1300){
+			setScale({
+				...scale,
+				scalePos:2,
+				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
+				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
+			});
+		}else if(screenWidth > 450 && screenWidth < 992){
+			setScale({
+				...scale,
+				scalePos:2.5,
+				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
+				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
+			});
+		}else if(screenWidth > 300 && screenWidth < 450){
+			setScale({
+				...scale,
+				scalePos:3,
+				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
+				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
+			});
+		}else{
+			setScale({
+				...scale,
+				scalePos:3.5,
+				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
+				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
+			});	
+		};
+	};
+
+	//set/change scale of map during resize
+	useEffect(()=>{
+		const screenWidth = window.innerWidth
+		setScaleAutomatic(screenWidth);
+	},[]);
+
+	useEffect(()=>{
+		window.addEventListener('resize',()=>{
+			const screenWidth = window.innerWidth
+			setScaleAutomatic(screenWidth);
+			console.log(scale.scalePos)
+		});
+	},[window.innerWidth]);
+
     return(
 		<>
-		
-    <div className='map-element map'>
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="-200 50 1000 500">
+		<button className="btn" onClick={getCloser}>+</button>
+		<button className="btn" style={scale.scalePos > 1 ?{pointerEvents:"visible",opacity:"1"}:{pointerEvents:"none",opacity:"0.5"}} onClick={getOut}>-</button>
+    <div className='map-element map'
+		ref={mapDivRef}
+	>
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+			onMouseMove={coordinates.move === true ? dragMap : null}
+			onTouchMove={coordinates.move === true ? dragMapMobile : null}
+			ref={mapRef}
+			onMouseDown={startMoveMap}
+			onMouseUp={stopMoveMap} 
+			onTouchStart={startTouchMap}
+			onTouchEnd={stopMoveMap}
+			viewBox="-100 0 1000 600"
+			style={{transform:`scale(${scale.scalePos})`,position:"relative",cursor:"move"}}
+		>
 		<g id="Europe">
-			<a onClick={()=>getCountryCode('fr')}><title id='France'>France</title><path className="st0" d="M303.459,391.844l0.13,0.311l0.086,0.598l0.085,0.261l0.306,0.34l0.134,0.203l0.027,0.269l-0.05,0.081
+			<a onClick={()=> getCountryCode('fr')}><title id='France'>France</title><path className="st0" d="M303.459,391.844l0.13,0.311l0.086,0.598l0.085,0.261l0.306,0.34l0.134,0.203l0.027,0.269l-0.05,0.081
 				l-0.197,0.197l-0.049,0.124l0.169,0.593l-0.01,0.088l-0.066,0.15l-0.009,0.062l0.027,0.046l0.104,0.053l0.039,0.044l0.073,0.171
 				l0.045,0.077l0.063,0.028l0.125,0.026l0.07,0.003l0.159-0.022l0.081,0.009l0.112,0.06l0.043,0.078l0.026,0.091l0.057,0.101
 				l0.318,0.304l0.049,0.089l0.115,0.272l0.045,0.083l0.158,0.133l0.684,0.313l0.039,0.018l0.133,0.029l0.113-0.087l0.257-0.446
@@ -8175,10 +8397,10 @@ const MapWorld:React.FC =()=> {
 				l-0.185,0.186l-0.087,0.064l-0.164,0.019l-0.804-0.134l-0.153,0.019l-0.139,0.099l-0.246,0.264l-0.063,0.047l-0.053,0.054
 				l-0.035,0.075l0.015,0.045l0.103,0.065l0.026,0.039l-0.007,0.064l-0.036,0.101l-0.01,0.06l-0.006,0.069l-0.007,0.082l-0.036,0.207
 				l-0.07,0.209l-0.115,0.157l-0.408,0.125l-0.879-0.038l-0.353,0.309l-0.121,0.275l-0.032,0.248l0.059,0.229L506.985,508.083z"/></a>
-			<path className="st0" d="M388.143,482.785l-0.255-0.132l-0.119-0.252l0.085-0.282l0.132-0.133l0.089-0.09l0.273-0.14l0.246-0.041
+			<a onClick={()=>getCountryCode('sm')}><title id='San Marino'>San Marino</title><path className="st0" d="M388.143,482.785l-0.255-0.132l-0.119-0.252l0.085-0.282l0.132-0.133l0.089-0.09l0.273-0.14l0.246-0.041
 				l0.06,0.112l0.028,0.198l-0.018,0.204l-0.062,0.118l-0.008,0.015l-0.022,0.025l-0.013,0.03l-0.004,0.038l0.007,0.036l-0.152,0.257
-				L388.143,482.785z"/>
-			<path className="st0" d="M345.475,484.541l-0.039,0.041l-0.127,0.106l-0.117,0.152l-0.202-0.015l-0.128-0.041l0.013-0.134l0.046-0.138
+				L388.143,482.785z"/></a>
+			<path style={{background:"red"}} className="st0" d="M345.475,484.541l-0.039,0.041l-0.127,0.106l-0.117,0.152l-0.202-0.015l-0.128-0.041l0.013-0.134l0.046-0.138
 				l0.127-0.142l0.166-0.066l0.165,0.095L345.475,484.541z"/>
 			<a  onClick={()=>getCountryCode('ad')}><title id='Andorra'>Andorra</title><path className="st0" d="M296.494,499.017l-0.081,0.096l-0.096,0.044l-0.103,0.001l-0.102-0.037l-0.022-0.036l-0.024-0.009
 				l-0.026,0.013l-0.031,0.036l-0.093,0.311l-0.274,0.116l-0.539,0.07l-0.048,0.054l-0.037,0.066l-0.054,0.066l-0.099,0.055
@@ -8926,4 +9148,4 @@ const MapWorld:React.FC =()=> {
 	</>
 )}
 	
-export default MapWorld
+export default React.memo(MapWorld);

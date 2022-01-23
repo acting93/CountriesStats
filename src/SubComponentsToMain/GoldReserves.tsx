@@ -3,7 +3,7 @@ import '../Styles/MainStyles/Main.css';
 import GoldImage from '../Images/gold2.png';
 import { StateType } from "../Redux/store";
 import { useSelector } from "react-redux";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 
 type Gold = {
@@ -35,8 +35,8 @@ const GoldReserves:React.FC =()=>{
 
     const getGoldStats =async(countryCode:string)=>{
 
-        const allReservsesApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/FI.RES.TOTL.CD?format=json` // all reserves
-        const allReservsesWithoutGoldApi = `http://api.worldbank.org/v2/country/${countryCode}/indicator/FI.RES.XGLD.CD?format=json` // all reserves - gold
+        const allReservsesApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/FI.RES.TOTL.CD?format=json` // all reserves
+        const allReservsesWithoutGoldApi = `https://api.worldbank.org/v2/country/${countryCode}/indicator/FI.RES.XGLD.CD?format=json` // all reserves - gold
 
         const getAllReservses = axios(allReservsesApi);
         const getAllReservsesWithoutGold = axios(allReservsesWithoutGoldApi);

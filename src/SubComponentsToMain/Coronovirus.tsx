@@ -7,7 +7,7 @@ import '../Styles/MainStyles/Main.css';
 
 type CovidType = {
     general: string,
-    recovery:string,
+    recovery:number,
     deaths:string,
     date:string
 };
@@ -17,7 +17,7 @@ const Coronavirus:React.FC =()=>{
     const countryId = useSelector<StateType,StateType['mainReducer']>(state => state.mainReducer);
     const [covid,setCovid] = useState<CovidType>({
         general: '',
-        recovery:'',
+        recovery:0,
         deaths:'',
         date:''
     });
@@ -30,10 +30,9 @@ const Coronavirus:React.FC =()=>{
         await axios.get(coronavirusApi)
         .then(response => {
             const lastUpdateCovid = response.data.pop();
-            console.log(response)
             setCovid({
                 general: lastUpdateCovid.Confirmed,
-                recovery:lastUpdateCovid.Recovered,
+                recovery:lastUpdateCovid.Confirmed - lastUpdateCovid.Deaths,
                 deaths:lastUpdateCovid.Deaths,
                 date:lastUpdateCovid.Date.slice(0,-10)
             })
@@ -54,19 +53,22 @@ const Coronavirus:React.FC =()=>{
                 </div>
                 <div className='coronavirus-el'>
                     <div className='covid general'>
-                            <p><i className="fa fa-medkit"></i>All infections</p>
+                            <i className="fa fa-medkit"></i>
+                            <p>All infections</p>
                             <p>Date: {covid.date}</p>
-                            <p><i className="fa fa-male"></i>{covid.general}</p>
+                            <p><i className="fa fa-male"></i><br/>{covid.general}</p>
                     </div>
                     <div className='covid recovery'>
-                            <p><i className="fa fa-heart"></i>Recovered</p>
+                            <i className="fa fa-heart"></i>
+                            <p>Recovered</p>
                             <p>Date: {covid.date}</p>
-                            <p><i className="fa fa-male"></i>{covid.recovery}</p>
+                            <p><i className="fa fa-male"></i><br/>{covid.recovery}</p>
                     </div>
                     <div className='covid deaths'>
-                            <p><i className="fa fa-cross"></i>All Deaths</p>
+                            <i className="fa fa-cross"></i>
+                            <p>All Deaths</p>
                             <p>Date: {covid.date}</p>
-                            <p><i className="fa fa-male"></i>{covid.deaths}</p>
+                            <p><i className="fa fa-male"></i><br/>{covid.deaths}</p>
                     </div>
                 </div>
             </section>
