@@ -377,7 +377,7 @@ main{
                         font-size: 1rem;
                     }
                     @media(max-width:250px){
-                        font-size: 0.6rem;
+                        font-size: 0.8rem;
                     }
                 }
                 img{
@@ -643,6 +643,7 @@ main{
        overflow: hidden;
        background:url('../../Images/bg9.jpg');
        background-size:cover;
+       padding: 10px;
        .gold-title{
            @include widthHeight(100%,100px);
             p{
@@ -701,21 +702,26 @@ main{
                     @include pVerticalCenter;
                     max-width: 10rem;
                     height: auto;
+                    @media(max-width:768px){
+                        max-width: 5rem;       
+                    }
                 }
             }
             p{
+                @include widthHeight(95%,auto);
+                @include paddingMargin(0,5px 0 !important);
                 text-align: center;
                 color:rgb(189, 170, 0);
                 letter-spacing: 2px;
                 font-size: 1.1rem;
-                padding: 2px;
+                padding: 1px;
                 text-transform: uppercase;
                 &:nth-child(odd){
                     color:rgb(255, 255, 255);
                     font-weight: 600; 
                 }
                 @media(max-width:992px){
-                    font-size: 1.2rem;       
+                    font-size: 1rem;       
                 }
                 @media(max-width:768px){
                     font-size: 0.9rem;       

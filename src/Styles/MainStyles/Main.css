@@ -655,7 +655,7 @@ main .coronavirus .coronavirus-el:first-child p {
 
 @media (max-width: 250px) {
   main .coronavirus .coronavirus-el:first-child p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -1091,6 +1091,7 @@ main .gold-reserves {
   overflow: hidden;
   background: url("../../Images/bg9.jpg");
   background-size: cover;
+  padding: 10px;
 }
 
 main .gold-reserves .gold-title {
@@ -1204,12 +1205,22 @@ main .gold-reserves .gold-content .gold-el .el-image img {
   height: auto;
 }
 
+@media (max-width: 768px) {
+  main .gold-reserves .gold-content .gold-el .el-image img {
+    max-width: 5rem;
+  }
+}
+
 main .gold-reserves .gold-content .gold-el p {
+  width: 95%;
+  height: auto;
+  padding: 0;
+  margin: 5px 0 !important;
   text-align: center;
   color: #bdaa00;
   letter-spacing: 2px;
   font-size: 1.1rem;
-  padding: 2px;
+  padding: 1px;
   text-transform: uppercase;
 }
 
@@ -1220,7 +1231,7 @@ main .gold-reserves .gold-content .gold-el p:nth-child(odd) {
 
 @media (max-width: 992px) {
   main .gold-reserves .gold-content .gold-el p {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 
