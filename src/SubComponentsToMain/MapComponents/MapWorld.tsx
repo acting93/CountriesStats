@@ -139,7 +139,6 @@ const MapWorld:React.FC =()=> {
 
 			mapRef.current.style.left  = (eClientX - coordinates.xCLient) - (rectLeft) + "px";
 			mapRef.current.style.top = (eClientY - coordinates.yCLient) - (rectTop) + "px";
-			//mapRef.current.style.transition = "0.09s";
 			
 			const getButton = document.querySelectorAll('.btn') as NodeListOf<HTMLButtonElement>;
 			getButton.forEach(button => button.style.opacity = '0.1');
@@ -167,68 +166,77 @@ const MapWorld:React.FC =()=> {
 
 //during resize add scale of svg map
 
-	const setScaleAutomatic =(screenWidth:number)=>{
+	const setScaleAutomatic =(screenWidth:number,bWS:number,bHS:number)=>{
 
 		//const screenWidth = window.innerWidth;
-
-		if(screenWidth > 1600){
+		
+		if(screenWidth >= 1600){
 			setScale({
 				...scale,
+				basicWidth:bWS/scale.scalePos,
+				basicHeight:bHS/scale.scalePos,
 				scalePos:1,
-				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)),
-				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0))
 			});
-		}else if(screenWidth > 1300 && screenWidth < 1600){
+		}else if(screenWidth >= 1300 && screenWidth < 1600){
 			setScale({
 				...scale,
+				basicWidth:bWS/scale.scalePos,
+				basicHeight:bHS/scale.scalePos,
 				scalePos:1.5,
-				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
-				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
 			});
-		}else if(screenWidth > 992 && screenWidth < 1300){
+		}else if(screenWidth >= 992 && screenWidth < 1300){
 			setScale({
 				...scale,
+				basicWidth:bWS/scale.scalePos,
+				basicHeight:bHS/scale.scalePos,
 				scalePos:2,
-				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
-				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
 			});
-		}else if(screenWidth > 450 && screenWidth < 992){
+		}else if(screenWidth >= 450 && screenWidth < 992){
 			setScale({
 				...scale,
+				basicWidth:bWS/scale.scalePos,
+				basicHeight:bHS/scale.scalePos,
 				scalePos:2.5,
-				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
-				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
 			});
-		}else if(screenWidth > 300 && screenWidth < 450){
+		}else if(screenWidth >= 300 && screenWidth < 450){
 			setScale({
 				...scale,
+				basicWidth:bWS/scale.scalePos,
+				basicHeight:bHS/scale.scalePos,
 				scalePos:3,
-				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
-				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
 			});
 		}else{
 			setScale({
 				...scale,
+				basicWidth:bWS/scale.scalePos,
+				basicHeight:bHS/scale.scalePos,
 				scalePos:3.5,
-				basicWidth:parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0)) / scale.scalePos,
-				basicHeight:parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0)) / scale.scalePos
 			});	
 		};
 	};
 
 	//set/change scale of map during resize
 	useEffect(()=>{
+
+		const basicWidthSvg = parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0));
+		const basicHeightSvg = parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0));
+
 		const screenWidth = window.innerWidth
-		setScaleAutomatic(screenWidth);
+		setScaleAutomatic(screenWidth,basicWidthSvg,basicHeightSvg);
+		
 	},[]);
 
 	useEffect(()=>{
+
+		const basicWidthSvg = parseInt(mapRef.current.getBoundingClientRect().width.toFixed(0));
+		const basicHeightSvg = parseInt(mapRef.current.getBoundingClientRect().height.toFixed(0));
+
 		window.addEventListener('resize',()=>{
 			const screenWidth = window.innerWidth
-			setScaleAutomatic(screenWidth);
-			console.log(scale.scalePos)
+			setScaleAutomatic(screenWidth,basicWidthSvg,basicHeightSvg);
 		});
 	},[window.innerWidth]);
+
 
     return(
 		<>
