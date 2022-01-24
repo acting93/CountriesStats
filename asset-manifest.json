@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CountriesStats/static/css/main.451bdf74.chunk.css",
-    "main.js": "/CountriesStats/static/js/main.c255eae7.chunk.js",
-    "main.js.map": "/CountriesStats/static/js/main.c255eae7.chunk.js.map",
+    "main.js": "/CountriesStats/static/js/main.e2187913.chunk.js",
+    "main.js.map": "/CountriesStats/static/js/main.e2187913.chunk.js.map",
     "runtime-main.js": "/CountriesStats/static/js/runtime-main.47cd2238.js",
     "runtime-main.js.map": "/CountriesStats/static/js/runtime-main.47cd2238.js.map",
     "static/js/2.b95119ec.chunk.js": "/CountriesStats/static/js/2.b95119ec.chunk.js",
@@ -62,6 +62,6 @@
     "static/js/runtime-main.47cd2238.js",
     "static/js/2.b95119ec.chunk.js",
     "static/css/main.451bdf74.chunk.css",
-    "static/js/main.c255eae7.chunk.js"
+    "static/js/main.e2187913.chunk.js"
   ]
 }
