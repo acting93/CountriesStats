@@ -144,25 +144,23 @@ const getRestInformation =async(countryCode:string)=>{
     const allApis = [getPopulation,getArea,getGDP,getGDPerCapita,getCo2Emission,getGniPerCapita,getPopulationSqKm,getForestArea,getGni,getGdpGrowth,getInflation,getExport,getImport,getIndustry,getMilitaryExpenditure,getMerchandiseTrade];
 
     await axios.all(allApis).then(
-
         axios.spread((...allData)=>{
-
             const population = new Intl.NumberFormat('pl-PL').format(allData[0].data[1][0].value); 
-            const gdp = new Intl.NumberFormat('pl-PL').format((allData[2].data[1][0].value).toFixed(0));
-            const gdpPerCapita = new Intl.NumberFormat('pl-Pl').format((allData[3].data[1][0].value).toFixed(0));
-            const co2Emission = allData[4].data[1][2].value.toFixed(2);
+            const gdp = new Intl.NumberFormat('pl-PL').format((allData[2].data[1][1].value).toFixed(0));
+            const gdpPerCapita = new Intl.NumberFormat('pl-Pl').format((allData[3].data[1][1].value).toFixed(0));
+            const co2Emission = allData[4].data[1][3].value.toFixed(2);
             const gniPerCapita = new Intl.NumberFormat('pl-PL').format(allData[5].data[1][0].value);
-            const populationSqKm = allData[6].data[1][0].value.toFixed(0); 
-            const forestArea = new Intl.NumberFormat('pl-Pl').format(allData[7].data[1][0].value);
+            const populationSqKm = allData[6].data[1][1].value.toFixed(0); 
+            const forestArea = new Intl.NumberFormat('pl-Pl').format(allData[7].data[1][1].value);
             const gni = new Intl.NumberFormat('pl-Pl').format(allData[8].data[1][0].value);
-            const gdpGrowth = allData[9].data[1][0].value.toFixed(2);
-            const inflation = allData[10].data[1][0].value.toFixed(2);
-            const exportIndex = allData[11].data[1][0].value.toFixed(2);
-            const importIndex = allData[12].data[1][0].value.toFixed(2);
-            const industry = allData[13].data[1][0].value.toFixed(2);
-            const militaryExpenditure = allData[14].data[1][0].value.toFixed(2);
-            const merchandiseTrade = allData[15].data[1][0].value.toFixed(2);
-            
+            const gdpGrowth = allData[9].data[1][1].value.toFixed(2);
+            const inflation = allData[10].data[1][1].value.toFixed(2);
+            const exportIndex = allData[11].data[1][1].value.toFixed(2);
+            const importIndex = allData[12].data[1][1].value.toFixed(2);
+            const industry = allData[13].data[1][1].value.toFixed(2);
+            const militaryExpenditure = allData[14].data[1][1].value.toFixed(2);
+            const merchandiseTrade = allData[15].data[1][1].value.toFixed(2);
+
             setWorldBankInfo({
                population:population,
                populationSqKm:populationSqKm,

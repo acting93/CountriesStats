@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { StateType } from "../Redux/store";
 import '../Styles/MainStyles/Main.css';
+import Virus from '../Images/covid.jpg';
 
 
 type CovidType = {

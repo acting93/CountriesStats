@@ -42,21 +42,19 @@ const Military:React.FC =()=>{
         const getMilitaryPersonnel = axios(militaryPersonnelApi);
         const getArmyExport = axios(armyExportApi);
         const getArmyImport = axios(armyImportApi);
-
         const allMilitaryAPi = [getExpenditureGdp,getMilitaryExpenditure,getMilitaryPersonnel,getArmyExport,getArmyImport];
 
         await axios.all(allMilitaryAPi).then(
-
               axios.spread((...allData)=>{
-                const expenditureGdp = allData[0].data[1][0].value.toFixed(2);
+                const expenditureGdp = allData[0].data[1][1].value.toFixed(2);
                 const expenditureGdpDate = allData[0].data[1][0].date
-                const militaryExpenditure = new Intl.NumberFormat('pl-Pl').format(allData[1].data[1][0].value.toFixed(2));
+                const militaryExpenditure = new Intl.NumberFormat('pl-Pl').format(allData[1].data[1][1].value.toFixed(2));
                 const militaryPersonnel = new Intl.NumberFormat('pl-Pl').format(allData[2].data[1][2].value);
                 const armyExport = new Intl.NumberFormat('pl-Pl').format(allData[3].data[1][0].value);
                 const armyExportDate = allData[3].data[1][0].date;
                 const armyImport = new Intl.NumberFormat('pl-Pl').format(allData[4].data[1][0].value);
                 const armyImportDate = allData[4].data[1][0].date;
-                
+
                 setMilitaryStats({
                     expenditureGdp:expenditureGdp,
                     year:expenditureGdpDate,

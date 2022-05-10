@@ -2,8 +2,8 @@ main {
   overflow-x: hidden;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.507))), url("../../Images/bg6.jpg") no-repeat center fixed;
-  background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.507)), url("../../Images/bg6.jpg") no-repeat center fixed;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0179c9), to(black));
+  background: linear-gradient(to bottom, #0179c9, black);
   background-size: cover;
   position: relative;
   padding: 0;
@@ -291,7 +291,7 @@ main .map-content .stats .stats-el:last-child table td:last-child {
 }
 
 main .about-country {
-  width: 80%;
+  width: 100%;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -299,9 +299,7 @@ main .about-country {
   -ms-grid-row: 3;
   -ms-grid-row-span: 2;
   grid-row: 3/5;
-  min-height: 500px !important;
-  padding: 10px;
-  margin: 30px auto;
+  min-height: 550px !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -312,7 +310,7 @@ main .about-country {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background: rgba(0, 0, 0, 0.514);
+  background: rgba(0, 0, 0, 0.589);
 }
 
 @media (max-width: 1550px) {
@@ -326,6 +324,8 @@ main .about-country {
 }
 
 main .about-country .country-element:first-child {
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.151))), url("../../Images/bg6.jpg");
+  background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.151)), url("../../Images/bg6.jpg");
   background-size: cover;
   width: 30%;
   height: 100%;
@@ -369,9 +369,10 @@ main .about-country .country-element:first-child img {
 }
 
 main .about-country .country-element:last-child {
+  position: relative;
   background: rgba(0, 0, 0, 0);
   width: 70%;
-  height: 100%;
+  height: 100% !important;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -423,7 +424,7 @@ main .about-country .country-element:last-child .country-title p {
 main .about-country .country-element:last-child .country-content {
   position: relative;
   width: 100%;
-  height: auto !important;
+  height: 100% !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -437,7 +438,10 @@ main .about-country .country-element:last-child .country-content {
   color: #ececec;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 5px 0px;
+  background: #000;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 main .about-country .country-element:last-child .country-content .content-part {
@@ -445,6 +449,7 @@ main .about-country .country-element:last-child .country-content .content-part {
   height: 140px;
   padding: 0px;
   margin: 5px;
+  top: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -580,12 +585,21 @@ main .coronavirus {
           flex-direction: row;
   padding: 0;
   margin: 0;
-  background: aliceblue;
   background-size: cover;
-  width: 100%;
-  height: 550px;
-  -webkit-box-shadow: 0 0 5px silver;
-          box-shadow: 0 0 5px silver;
+  width: 80%;
+  height: 600px;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+@media (max-width: 1400px) {
+  main .coronavirus {
+    width: 100% !important;
+    margin-left: 0%;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
 }
 
 @media (max-width: 992px) {
@@ -630,7 +644,7 @@ main .coronavirus .coronavirus-el:first-child p {
           transform: translateY(-50%);
   font-weight: 600;
   font-size: 1.6rem;
-  color: #095246;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -741,17 +755,13 @@ main .coronavirus .coronavirus-el:last-child .covid {
 
 main .coronavirus .coronavirus-el:last-child .general, main .coronavirus .coronavirus-el:last-child .recovery, main .coronavirus .coronavirus-el:last-child .deaths {
   text-align: center;
-  -webkit-box-shadow: 0 0 5px silver;
-          box-shadow: 0 0 5px silver;
   background-position: left;
   text-transform: uppercase;
-  background: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.521)), to(rgba(0, 0, 0, 0.486))), url("../../Images/bg2.jpg");
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.521), rgba(0, 0, 0, 0.486)), url("../../Images/bg2.jpg");
-  background-size: cover;
+  background-position: -50%;
 }
 
 main .coronavirus .coronavirus-el:last-child .general i, main .coronavirus .coronavirus-el:last-child .recovery i, main .coronavirus .coronavirus-el:last-child .deaths i {
-  color: #eeeeee;
+  color: #e2e2e2;
   font-size: 2.5rem;
   position: relative;
   top: 10%;
@@ -765,7 +775,7 @@ main .coronavirus .coronavirus-el:last-child .general p, main .coronavirus .coro
 main .coronavirus .coronavirus-el:last-child .general p:nth-child(2), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(2), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(2) {
   font-size: 1.5rem;
   font-weight: 400;
-  color: #f1f1f1;
+  color: #cfcfcf;
 }
 
 @media (max-width: 996px) {
@@ -777,7 +787,7 @@ main .coronavirus .coronavirus-el:last-child .general p:nth-child(2), main .coro
 main .coronavirus .coronavirus-el:last-child .general p:nth-child(3), main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(3), main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(3) {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #dddddd;
+  color: #8d8d8d;
 }
 
 @media (max-width: 996px) {
@@ -789,7 +799,7 @@ main .coronavirus .coronavirus-el:last-child .general p:nth-child(3), main .coro
 main .coronavirus .coronavirus-el:last-child .general p:last-child, main .coronavirus .coronavirus-el:last-child .recovery p:last-child, main .coronavirus .coronavirus-el:last-child .deaths p:last-child {
   font-size: 2.5rem;
   font-weight: 400;
-  color: white;
+  color: #b1b1b1;
 }
 
 @media (max-width: 996px) {
@@ -800,8 +810,6 @@ main .coronavirus .coronavirus-el:last-child .general p:last-child, main .corona
 
 main .coronavirus .coronavirus-el:last-child .recovery {
   text-align: center;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.589)), to(rgba(4, 204, 211, 0.555))), url("../../Images/covid.jpg");
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.589), rgba(4, 204, 211, 0.555)), url("../../Images/covid.jpg");
   background-position: center;
 }
 
@@ -814,7 +822,7 @@ main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(2) {
 }
 
 main .coronavirus .coronavirus-el:last-child .recovery p:nth-child(3) {
-  color: #2c2c2c;
+  color: #8d8d8d;
 }
 
 main .coronavirus .coronavirus-el:last-child .recovery p:last-child {
@@ -823,29 +831,27 @@ main .coronavirus .coronavirus-el:last-child .recovery p:last-child {
 
 main .coronavirus .coronavirus-el:last-child .deaths {
   text-align: center;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.849)), to(rgba(4, 204, 211, 0.911)));
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.849), rgba(4, 204, 211, 0.911));
 }
 
 main .coronavirus .coronavirus-el:last-child .deaths i {
-  color: white;
+  color: #007e4e;
 }
 
 main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(2) {
-  color: #f1f1f1;
+  color: #00f5fd;
 }
 
 main .coronavirus .coronavirus-el:last-child .deaths p:nth-child(3) {
-  color: #cccccc;
+  color: #8d8d8d;
 }
 
 main .coronavirus .coronavirus-el:last-child .deaths p:last-child {
-  color: white;
+  color: #00f5fd;
 }
 
 main .military {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0))), url("../../Images/bg5.jpg");
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../../Images/bg5.jpg");
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0))), url("../../Images/tank.png") fixed;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0)), url("../../Images/tank.png") fixed;
   background-position: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -859,7 +865,7 @@ main .military {
           flex-direction: column;
   padding: 10px;
   margin: 0;
-  height: 600px;
+  height: 650px;
   -ms-grid-row: 4;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -868,6 +874,9 @@ main .military {
   -ms-grid-row-span: 2;
   grid-row: 7/9;
   position: relative;
+  border-radius: 30% 0%;
+  -webkit-box-shadow: 0 0 10px black;
+          box-shadow: 0 0 10px black;
 }
 
 @media (max-width: 768px) {
@@ -943,7 +952,6 @@ main .military .military-content {
 main .military .military-content .military-el {
   -ms-flex-preferred-size: 40%;
       flex-basis: 40%;
-  background: rgba(0, 0, 0, 0.39);
 }
 
 main .military .military-content .military-el:first-child table {
@@ -1089,7 +1097,7 @@ main .gold-reserves {
   -ms-grid-row-span: 2;
   grid-row: 9/11;
   overflow: hidden;
-  background: url("../../Images/bg9.jpg");
+  background: url("../../Images/gold4.png");
   background-size: cover;
   padding: 10px;
 }
@@ -1162,7 +1170,8 @@ main .gold-reserves .gold-content {
 main .gold-reserves .gold-content .gold-el {
   padding: 10px;
   margin: 0;
-  background: rgba(0, 0, 0, 0.788);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.247)), to(rgba(0, 0, 255, 0.507)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.247), rgba(0, 0, 255, 0.507));
   position: relative;
   width: 450px !important;
   top: 50%;
@@ -1217,7 +1226,7 @@ main .gold-reserves .gold-content .gold-el p {
   padding: 0;
   margin: 5px 0 !important;
   text-align: center;
-  color: #bdaa00;
+  color: #eeeeee;
   letter-spacing: 2px;
   font-size: 1.1rem;
   padding: 1px;
